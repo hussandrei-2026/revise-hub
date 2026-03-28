@@ -8,6 +8,8 @@ import { CreateCalendarEventModal } from './components/CreateCalendarEventModal'
 import { EditCalendarEventModal } from './components/EditCalendarEventModal';
 import { ResourcesTab } from './components/ResourcesTab';
 import { PastPapersTab } from './components/PastPapersTab';
+import { ExamCountdownTimer } from './components/ExamCountdownTimer';
+import { ExamSchedulePage } from './components/ExamSchedulePage';
 import './Dashboard.css';
 
 interface UserStats {
@@ -97,7 +99,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([]);
 
   // UI state
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'flashcards' | 'calendar' | 'achievements' | 'resources' | 'past-papers' >('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'flashcards' | 'calendar' | 'exam-schedule' | 'resources' | 'past-papers' | 'achievements' >('dashboard');
   const [loading, setLoading] = useState(true);
   const [showFlashcardModal, setShowFlashcardModal] = useState(false);
   const [showEditFlashcardModal, setShowEditFlashcardModal] = useState(false);
@@ -262,7 +264,8 @@ const Dashboard: React.FC<DashboardProps> = ({
         <p>GCSE exams in {examsIn} days • Keep up your momentum</p>
         {userEmail && <p className="email-text">{userEmail}</p>}
       </div>
-
+      {/* ← ADD COUNTDOWN HERE */}
+      <ExamCountdownTimer targetDate={new Date('2026-05-19')} showMotivation={true}/>
       {/* Featured Card - Today's Focus */}
       <div className="featured-card">
         <div className="featured-header">
@@ -299,7 +302,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           )}
         </div>
       </div>
-
+          
       {/* Pomodoro Timer Display - ALWAYS VISIBLE WHEN RUNNING OR PAUSED */}
       {(pomodoroActive || pomodoroTime < 25 * 60) && (
         <div className={`pomodoro-display ${pomodoroActive ? 'active' : 'paused'}`}>
@@ -634,16 +637,22 @@ const Dashboard: React.FC<DashboardProps> = ({
           📝 Flashcards
         </button>
         <button 
-          className={`nav-tab ${activeTab === 'past-papers' ? 'active' : ''}`}
-          onClick={() => setActiveTab('past-papers')}
-        >
-          📄 Past Papers
-        </button>
-        <button 
           className={`nav-tab ${activeTab === 'calendar' ? 'active' : ''}`}
           onClick={() => setActiveTab('calendar')}
         >
           📅 Calendar
+        </button>
+        <button
+          className={`nav-tab ${activeTab === 'exam-schedule' ? 'active' : ''}`}
+          onClick={() => setActiveTab('exam-schedule')}
+        >
+          📅 Exam Schedule
+        </button>
+        <button 
+          className={`nav-tab ${activeTab === 'past-papers' ? 'active' : ''}`}
+          onClick={() => setActiveTab('past-papers')}
+        >
+          📄 Past Papers
         </button>
         <button 
           className={`nav-tab ${activeTab === 'achievements' ? 'active' : ''}`}
@@ -667,6 +676,7 @@ const Dashboard: React.FC<DashboardProps> = ({
         {activeTab === 'achievements' && renderAchievementsTab()}
         {activeTab === 'resources' && <ResourcesTab userSubjects={['maths', 'physics']} />}
         {activeTab === 'past-papers' && <PastPapersTab userId={userId} />}
+        {activeTab === 'exam-schedule' && <ExamSchedulePage userId={userId} />}
       </main>
 
       {/* Footer */}
