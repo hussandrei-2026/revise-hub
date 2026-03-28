@@ -17,12 +17,6 @@ setPersistence(auth, browserLocalPersistence).catch(err => {
   console.warn('Persistence setting failed:', err);
 });
 
-interface UserData {
-  email: string;
-  displayName: string;
-  subjects: string[];
-}
-
 export const authService = {
   /**
    * Sign up with email and password

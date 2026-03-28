@@ -1,6 +1,6 @@
 import { storage, db } from '../firebase';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
-import { doc, setDoc, getDoc, query, collection, where, getDocs, deleteDoc } from 'firebase/firestore';
+import { doc, setDoc, collection, where, getDocs, deleteDoc, query } from 'firebase/firestore';
 
 export interface PastPaperMetadata {
   subject: string;
