@@ -77,9 +77,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   const { 
     pomodoroActive, 
     pomodoroTime, 
-    isWorkSession, 
     togglePomodoro, 
-    pausePomodoro, 
     resumePomodoro, 
     resetPomodoro, 
     formatTime 

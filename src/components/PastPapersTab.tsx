@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { firestoreService } from '../services/firestore.service';
 import { storageService } from '../services/storage.service';
 
@@ -35,12 +35,8 @@ export const PastPapersTab: React.FC<PastPapersTabProps> = ({ userId }) => {
     file: null as File | null
   });
 
-  // Load past papers on mount
-  useEffect(() => {
-    loadPastPapers();
-  }, [userId]);
-
-  const loadPastPapers = async () => {
+  // Load past papers - wrapped in useCallback to avoid dependency issues
+  const loadPastPapers = useCallback(async () => {
     setLoading(true);
     try {
       const papers = await firestoreService.getPastPapers(userId);
@@ -52,7 +48,12 @@ export const PastPapersTab: React.FC<PastPapersTabProps> = ({ userId }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
+
+  // Load past papers on mount
+  useEffect(() => {
+    loadPastPapers();
+  }, [loadPastPapers]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
