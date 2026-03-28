@@ -1,0 +1,176 @@
+/* ============================================
+   REVISE HUB THEME - Light & Dark Mode
+   ============================================ */
+
+/* CRITICAL: Set default theme variables first (fallback) */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f5f7fa;
+  
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  
+  --border-primary: #e5e7eb;
+  --border-secondary: #d1d5db;
+  
+  --color-primary: #378ADD;
+  --color-primary-dark: #185FA5;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-danger-dark: #dc2626;
+  --color-warning-dark: #d97706;
+  
+  --header-bg: linear-gradient(90deg, #378ADD 0%, #185FA5 100%);
+  --gradient-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+   LIGHT MODE (DEFAULT)
+   ============================================ */
+[data-theme="light"],
+html[data-theme="light"],
+html:not([data-theme]) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f5f7fa;
+  
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  
+  --border-primary: #e5e7eb;
+  --border-secondary: #d1d5db;
+  
+  --color-primary: #378ADD;
+  --color-primary-dark: #185FA5;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-danger-dark: #dc2626;
+  --color-warning-dark: #d97706;
+  
+  --header-bg: linear-gradient(90deg, #378ADD 0%, #185FA5 100%);
+  --gradient-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+   DARK MODE - WITH !IMPORTANT OVERRIDE
+   ============================================ */
+[data-theme="dark"],
+html[data-theme="dark"] {
+  --bg-primary: #1f2937 !important;
+  --bg-secondary: #111827 !important;
+  --bg-tertiary: #0f172a !important;
+  
+  --text-primary: #f3f4f6 !important;
+  --text-secondary: #d1d5db !important;
+  --text-tertiary: #9ca3af !important;
+  
+  --border-primary: #374151 !important;
+  --border-secondary: #4b5563 !important;
+  
+  --color-primary: #60a5fa !important;
+  --color-primary-dark: #3b82f6 !important;
+  --color-success: #10b981 !important;
+  --color-warning: #f59e0b !important;
+  --color-danger: #ef4444 !important;
+  --color-danger-dark: #dc2626 !important;
+  --color-warning-dark: #d97706 !important;
+  
+  --header-bg: linear-gradient(90deg, #1e3a8a 0%, #1e40af 100%) !important;
+  --gradient-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ============================================
+   GLOBAL THEME APPLICATION
+   ============================================ */
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+html {
+  /* Ensure data-theme is set (will be updated by React) */
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* Ensure form elements also respect theme */
+input,
+textarea,
+select {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-primary) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: var(--color-primary) !important;
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Scrollbar theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Code/pre blocks */
+code {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+pre {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
